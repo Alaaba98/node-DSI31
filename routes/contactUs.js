@@ -43,7 +43,7 @@ router.get('/findcontact/:id', async (req, res) => {
 // repondre au message du client ou le visiteur
 router.patch('/responsecontact/:id', async (req, res) => {
     var item = {
-        reponse: req.body.image,
+        reponse: req.body.reponse,
         reponseAdmin: true
     };
     try {
@@ -68,3 +68,6 @@ router.delete('/deletecontact/:id', async (req, res) => {
     }
 }
 );
+
+
+module.exports = router;
