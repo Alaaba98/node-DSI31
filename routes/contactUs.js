@@ -1,6 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/ContactUs');
+const mongoose = require('mongoose');
+const Contact = require('../models/ContactUs');
+
+
+//GET BACK ALL contactus
+router.get('/', async (req, res) => {
+    try {
+        const contact = await Contact.find();
+
+        res.json(contact);
+
+    }
+    catch (err) {
+        res.json({ message: err });
+    }
+});
+
 
 // ajouter un message d'un client ou d'un visiteur
 router.post('/addcontact', async (req, res) => {

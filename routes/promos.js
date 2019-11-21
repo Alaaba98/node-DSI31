@@ -1,3 +1,8 @@
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
+const Promo = require('../models/Promo');
+
 //GET BACK ALL promos
 router.get('/', async (req, res) => {
     try {
@@ -12,7 +17,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/promo', async (req, res) => {
+router.post('/addpromo', async (req, res) => {
     data = req.body;
     let promo = new Promo({
         codePromo: data.codePromo,
@@ -36,7 +41,7 @@ router.get('/findpromo/:_id', async (req, res) => {
     console.log(req.params._id);
     try {
         const promo = await Promo.findById(req.params._id)
-        res.json(user);
+        res.json(promo);
     }
     catch (err) {
         console.log("erreur");

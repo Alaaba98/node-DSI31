@@ -8,13 +8,13 @@ const Promotion = mongoose.Schema({
         required: true
     },
     reduction:{
-        type:number,
+        type:Number,
         required:true,
          min: 1,
          max: 90
-    }
+    },
     dateExpiration: {
-        type: Date,
+        type: String,
         required:true
     }
 }); 

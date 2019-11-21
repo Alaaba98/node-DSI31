@@ -8,6 +8,8 @@ const users = require('./routes/users');
 const posts = require('./routes/posts');
 const paniers = require('./routes/paniers');
 const commands = require('./routes/commands');
+const promos = require('./routes/promos');
+const contactus = require('./routes/contactUs');
 
 require('dotenv/config');
 
@@ -16,7 +18,8 @@ app.use(cors());
 app.use(bodyParse.json());
 app.use('/users',users);
 app.use('/posts',posts);
-//app.use('/paniers',paniers);
+app.use('/promo',promos)
+app.use('/contactus',contactus);
 app.use('/commands',commands);
 //Routes
 app.get('/',(req,res)=>{
