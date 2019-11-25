@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Contact = require('../models/ContactUs');
+const ContactUs = require('../models/ContactUs');
 
 
 //GET BACK ALL contactus
 router.get('/', async (req, res) => {
     try {
-        const contact = await Contact.find();
+        const contact = await ContactUs.find();
 
         res.json(contact);
 
@@ -20,27 +20,22 @@ router.get('/', async (req, res) => {
 
 // ajouter un message d'un client ou d'un visiteur
 router.post('/addcontact', async (req, res) => {
-    data = req.body;
-    let contact = new ContactUs({
-        email: data.email,
-        sujet: data.sujet,
-        message: data.message
-    });
+    
     try {
+        data = req.body;
+        let contact = new ContactUs({
+            email: data.email,
+            sujet: data.sujet,
+            message: data.message,
+            reponse: "",
+            reponseAdmin: false
+        });
         const savedContact = await contact.save()
         res.json(savedContact);
     }
     catch (err) {
         res.json({ message: err });
     }
-    contact.save().then((contactFromdb) => {
-
-        res.status(200).send({ message: "ajout avec succes" })
-
-    }).catch((erreur) => {
-        res.status(400).send({ "message": "erreur : " + erreur })
-    })
-
 });
 
 // chercher message 
