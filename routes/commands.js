@@ -13,6 +13,7 @@ let command= new Command(
        listeProduit : req.body.listeProduit ,
        id_User :  req.body.id_User,
        livraison : req.body.livraison,
+       id_promo : req.body.id_promo,
        somme : req.body.somme,
     }
     );

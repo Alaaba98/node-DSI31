@@ -39,11 +39,15 @@ const PostCommand =new  Schema({
           type:String,
           required:true
       },
+      id_promo:
+      {
+        type:Schema.Types.ObjectId
+      },
       somme:
       {
         type:Number,
         required:true
-    }
+      }
      
 
 });
