@@ -23,6 +23,7 @@
     "multer": "^1.4.2",
     "multipart": "^0.1.5",
     "multiparty": "^4.2.1",
+    "nodemailer": "^6.4.0",
     "nodemon": "^1.19.3",
     "path": "^0.12.7",
     "read-chunk": "^3.2.0"

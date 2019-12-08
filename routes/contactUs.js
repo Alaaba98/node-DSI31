@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const ContactUs = require('../models/ContactUs');
+const nodemailer = require("nodemailer");
 
 
 //GET BACK ALL contactus
@@ -66,7 +67,46 @@ router.patch('/responsecontact/:id', async (req, res) => {
         res.json({ message: err });
     }
 
+    console.log("request came");
+      let user = req.body.mail;
+      let reponse = req.body.reponse;
+      sendMail(user,reponse, info => {
+        console.log(`The mail has beed send 😃 `);
+        res.send(info);
+      });
+
 });
+
+
+async function sendMail(user,reponse, callback) {
+  // create reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: "Mohamedmeherzi11@gmail.com",
+      pass: "Sleh14355"
+    }
+  });
+
+  let mailOptions = {
+    from: 'Mohamedmeherzi11@gmail.com', // sender address
+    to: user, // list of receivers
+    subject: "Reponse a votre question", // Subject line
+    html: "<h1>"+reponse+"</h1>"
+  };
+
+  // send mail with defined transport object
+  let info = transporter.sendMail(mailOptions, function (err, info) {
+   if(err)
+     console.log(err)
+   else
+     console.log(info);
+});
+
+  callback(info);
+  }
+
+
 
 // Supprimer messsage d'un client ou d'un visiteur
 router.delete('/deletecontact/:id', async (req, res) => {
