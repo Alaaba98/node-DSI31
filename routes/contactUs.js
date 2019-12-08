@@ -71,8 +71,8 @@ router.patch('/responsecontact/:id', async (req, res) => {
       let user = req.body.mail;
       let reponse = req.body.reponse;
       sendMail(user,reponse, info => {
-        console.log(`The mail has beed send 😃 `);
         res.send(info);
+        console.log(`The mail has beed send 😃 `);
       });
 
 });
@@ -81,15 +81,20 @@ router.patch('/responsecontact/:id', async (req, res) => {
 async function sendMail(user,reponse, callback) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: "smtp-mail.outlook.com", // hostname
+    secureConnection: false, // TLS requires secureConnection to be false
+    port: 587, // port for secure SMTP
+    tls: {
+       ciphers:'SSLv3'
+    },
     auth: {
-      user: "Mohamedmeherzi11@gmail.com",
-      pass: "Sleh14355"
+      user: "medmeherzi11@hotmail.com",
+      pass: "Asusroglife12"
     }
   });
 
   let mailOptions = {
-    from: 'Mohamedmeherzi11@gmail.com', // sender address
+    from: 'medmeherzi11@hotmail.com', // sender address
     to: user, // list of receivers
     subject: "Reponse a votre question", // Subject line
     html: "<h1>"+reponse+"</h1>"
